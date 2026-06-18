@@ -6,6 +6,7 @@
   --white: #ffffff;
   --red: #a02334;
   --red-dark: #741927;
+  --deep-accent: #5f332b;
   --jade: #0f6f68;
   --gold: #b5842d;
   --blue: #244c77;
@@ -32,7 +33,7 @@ html {
   z-index: 100;
   padding: 10px 14px;
   border-radius: 6px;
-  background: var(--ink);
+  background: var(--deep-accent);
   color: var(--white);
   font-weight: 700;
   transform: translateY(-150%);
@@ -255,8 +256,7 @@ h1 {
   font-size: clamp(1.08rem, 1.8vw, 1.42rem);
 }
 
-.hero-actions,
-.contact-actions {
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -389,8 +389,7 @@ h1 {
   line-height: 1.2;
 }
 
-.section,
-.contact-section {
+.section {
   max-width: var(--max);
   margin: 0 auto;
   padding: clamp(56px, 8vw, 92px) clamp(18px, 4vw, 36px);
@@ -461,13 +460,15 @@ h3 {
 .stream-grid article span,
 .submission-flow article span {
   display: inline-grid;
-  width: 38px;
+  min-width: 38px;
   height: 38px;
+  padding: 0 12px;
   margin-bottom: 18px;
   place-items: center;
   border-radius: 999px;
-  background: var(--ink);
+  background: var(--deep-accent);
   color: var(--white);
+  font-size: 0.88rem;
   font-weight: 700;
 }
 
@@ -543,19 +544,12 @@ h3 {
   gap: 14px;
 }
 
-.registration-panel,
 .news-list {
   display: grid;
   max-width: var(--max);
   gap: 14px;
 }
 
-.registration-panel {
-  grid-template-columns: 1fr 1fr minmax(220px, 0.6fr);
-  align-items: stretch;
-}
-
-.registration-panel > div,
 .news-list article {
   padding: 22px;
   border: 1px solid var(--line);
@@ -563,7 +557,6 @@ h3 {
   background: var(--white);
 }
 
-.registration-panel strong,
 .news-list time {
   display: block;
   margin-bottom: 12px;
@@ -571,15 +564,9 @@ h3 {
   font-weight: 700;
 }
 
-.registration-panel p,
 .news-list p {
   margin-bottom: 0;
   color: var(--muted);
-}
-
-.registration-panel .button {
-  min-height: 100%;
-  text-align: center;
 }
 
 .timeline {
@@ -624,7 +611,7 @@ h3 {
   display: grid;
   height: 100%;
   place-items: center;
-  background: var(--ink);
+  background: var(--deep-accent);
   color: var(--white);
   font-size: 1.28rem;
 }
@@ -720,28 +707,57 @@ details p {
   color: var(--muted);
 }
 
-.contact-section {
+.floating-registration {
+  position: fixed;
+  right: clamp(18px, 3vw, 36px);
+  bottom: 0;
+  z-index: 30;
   display: grid;
-  grid-template-columns: minmax(260px, 0.55fr) 1fr;
-  gap: clamp(28px, 5vw, 70px);
-  margin-bottom: 32px;
-  border: 1px solid var(--ink);
+  grid-template-columns: 1fr 1fr auto;
+  align-items: stretch;
+  width: min(760px, calc(100vw - 36px));
+  overflow: hidden;
+  border: 1px solid rgba(222, 217, 210, 0.9);
   border-radius: 8px;
-  background: var(--ink);
+  background: rgba(251, 250, 247, 0.96);
+  box-shadow: 0 18px 46px rgba(25, 24, 22, 0.16);
+  backdrop-filter: blur(14px);
+}
+
+.floating-registration > div {
+  display: grid;
+  gap: 4px;
+  padding: 16px 18px;
+  border-right: 1px solid var(--line);
+}
+
+.floating-registration span {
+  color: var(--red-dark);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.floating-registration strong {
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 1.04rem;
+}
+
+.floating-register-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 132px;
+  padding: 16px 20px;
+  background: var(--red);
   color: var(--white);
+  font-weight: 800;
+  text-align: center;
 }
 
-.contact-section .eyebrow {
-  color: #f0bd55;
-}
-
-.contact-section h2 {
-  margin-bottom: 0;
-  font-size: clamp(2rem, 4vw, 3.9rem);
-}
-
-.contact-section .button {
-  border-color: rgba(255, 255, 255, 0.55);
+.floating-register-button:hover,
+.floating-register-button:focus-visible {
+  background: var(--red-dark);
 }
 
 .site-footer {
@@ -749,6 +765,16 @@ details p {
   color: var(--muted);
   border-top: 1px solid var(--line);
   background: #f4f1ec;
+}
+
+.footer-contact {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.footer-contact p {
+  margin: 0;
 }
 
 .back-to-top {
@@ -843,8 +869,7 @@ details p {
 
   .hero,
   .two-column,
-  .split,
-  .contact-section {
+  .split {
     grid-template-columns: 1fr;
   }
 
@@ -856,7 +881,6 @@ details p {
   .info-table,
   .stream-grid,
   .resource-layout,
-  .registration-panel,
   .footer-layout {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -912,7 +936,6 @@ details p {
   .timeline li,
   .award-strip,
   .resource-layout,
-  .registration-panel,
   .footer-layout {
     grid-template-columns: 1fr;
   }
@@ -931,8 +954,7 @@ details p {
     grid-template-columns: 1fr;
   }
 
-  .hero-actions,
-  .contact-actions {
+  .hero-actions {
     display: grid;
   }
 
@@ -944,7 +966,20 @@ details p {
     grid-template-columns: 72px 1fr;
   }
 
-  .registration-panel .button {
-    min-height: 54px;
+  .floating-registration {
+    right: 10px;
+    bottom: 0;
+    grid-template-columns: 1fr;
+    width: calc(100vw - 20px);
+  }
+
+  .floating-registration > div {
+    padding: 12px 14px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .floating-register-button {
+    min-height: 52px;
   }
 }
